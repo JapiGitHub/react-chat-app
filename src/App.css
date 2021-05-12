@@ -1,38 +1,165 @@
+body {
+  background-color: #282c34;
+  font-family: "Roboto", sans-serif;
+}
+
 .App {
+  text-align: center;
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+.googleSignButt {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: "Roboto", sans-serif;
+  font-size: 2.5rem;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
+  color: Black;
+  transform: scale(1);
+}
+
+.googleSignButt:hover {
+  transform: scale(1.1) perspective(1px);
+
+  background-color: rgba(255, 255, 255, 0.4);
+  color: White;
+}
+
+.App section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(305deg, rgb(156, 9, 9), rgb(34, 82, 116));
+  font-size: 1.2rem;
+}
+
+main {
+  padding: 10px;
+  height: 85vh;
+  margin-bottom: 10vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+main::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+main::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: linear-gradient(305deg, rgb(156, 9, 9), rgb(34, 82, 116));
+}
+
+form {
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(24, 23, 23);
+  width: 100%;
+  max-width: 728px;
+  display: flex;
+  font-size: 1.5rem;
+}
+
+form button {
+  width: 30%;
+  background-color: rgb(163, 50, 50);
+  font-family: "Lobster", cursive;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
+  transform: scale(1);
+  color: Black;
+}
+
+form button:hover {
+  color: White;
+  border-radius: 3px;
+  transform: scale(1.1) perspective(1px);
+}
+
+input {
+  line-height: 1.5;
+  width: 100%;
+  font-size: 1.5rem;
+  background: rgba(50, 169, 255, 0.4);
+  color: rgb(255, 255, 255);
+  outline: none;
+  border: none;
+  padding: 0 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+button {
+  background-color: #282c34;
+  border: none;
+  color: white;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sign-in {
+  color: #282c34;
+  background: white;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+ul,
+li {
+  text-align: left;
+  list-style: none;
+}
+
+p {
+  max-width: 500px;
+  margin-bottom: 12px;
+  line-height: 24px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  position: relative;
+  color: white;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.message {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.sent {
+  flex-direction: row-reverse;
+}
+
+.sent p {
   color: white;
+  background: #225274;
+  align-self: flex-end;
+}
+.received p {
+  background: #e5e5ea;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 2px 5px;
 }
