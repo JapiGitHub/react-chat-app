@@ -1,12 +1,13 @@
 import "./App.css";
-import { useState, useRef, useEffect } from "react";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import Login from "./components/Login";
+import Chat from "./components/Chat";
 
 //DEFAULT already exits, mut nyt valittaa ReferenceError: Cannot access 'messages' before initialization
 try {
@@ -21,14 +22,14 @@ try {
   });
 } catch {
   console.log(
-    "Firebase App named '[DEFAULT]' already exists, ERROR OHITETTU try catchilla."
+    "ei varsinainen errori,mutta Firebase App named '[DEFAULT]' already exists, ERROR OHITETTU try catchilla."
   );
 }
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-//DEBUG
+//DEBUGgia varten
 auth.signOut();
 
 function App() {
@@ -36,105 +37,13 @@ function App() {
 
   return (
     <div className="App">
-      <section>{user ? <Chat /> : <Login />}</section>
-    </div>
-  );
-}
-
-function Login() {
-  const googleLogin = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  };
-
-  return (
-    <div className="loginButtContainer">
-      <button onClick={googleLogin} className="googleSignButt">
-        Sign in with Google ✍
-      </button>
-    </div>
-  );
-}
-
-function Logout() {
-  return (
-    auth.currentUser && (
-      <button className="sign-out" onClick={() => auth.signOut()}>
-        Logout
-      </button>
-    )
-  );
-}
-
-function Chat() {
-  //reference a firestore collection
-  const messagesRef = firestore.collection("messages");
-
-  const query = messagesRef.orderBy("createdAt");
-
-  //hookki jotta react päivittelee messagessin muuttuessa
-  //idField: (optional) name of the field that should be populated with the firebase.firestore.QuerySnapshot.id property
-  const [messages] = useCollectionData(query, { idField: "id" });
-
-  const [formValue, setFormValue] = useState("");
-
-  const scrollDownRef = useRef();
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
-
-    const { uid, photoURL } = auth.currentUser;
-
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL,
-    });
-
-    setFormValue("");
-  };
-
-  //scrollaa alas kirjautumisen jälkeen ja aina kun uusi viesti tulee.
-  useEffect(() => {
-    scrollDownRef.current.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [messages]);
-
-  return (
-    <>
-      <main className="chat">
-        {messages &&
-          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-
-        <nav ref={scrollDownRef}> </nav>
-      </main>
-
-      <form className="footerContainer" onSubmit={sendMessage}>
-        <input
-          value={formValue}
-          onChange={(e) => {
-            setFormValue(e.target.value);
-          }}
-        />
-        <button className="sendButton" type="submit">
-          Send&nbsp;💬
-        </button>
-      </form>
-    </>
-  );
-}
-
-function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
-
-  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
-
-  return (
-    <div className={`message ${messageClass}`}>
-      <img className="avatarPic" src={photoURL} alt={uid} />
-      <p>{text}</p>
+      <section>
+        {user ? (
+          <Chat auth={auth} firestore={firestore} />
+        ) : (
+          <Login auth={auth} />
+        )}
+      </section>
     </div>
   );
 }

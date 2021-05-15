@@ -177,7 +177,7 @@ p {
   margin: 0px 0px;
 }
 
-/* ikkunan leveyden mukaan skaalautuva 3-vaiheinen (500 & 720 & 4k) fonttikoko */
+/* ikkunan leveyden mukaan skaalautuva 4-vaiheinen (500 & 720 & 1200 & 4k) fonttikoko */
 @media all and (max-width: 2160px) {
   .sendButton {
     font-size: 3rem;
