@@ -48,7 +48,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="loginButtContainer">
       <button onClick={googleLogin} className="googleSignButt">
         Sign in with Google ✍
       </button>
@@ -70,7 +70,7 @@ function Chat() {
   //reference a firestore collection
   const messagesRef = firestore.collection("messages");
 
-  const query = messagesRef.orderBy("createdAt").limit(25);
+  const query = messagesRef.orderBy("createdAt");
 
   //hookki jotta react päivittelee messagessin muuttuessa
   //idField: (optional) name of the field that should be populated with the firebase.firestore.QuerySnapshot.id property
@@ -108,17 +108,19 @@ function Chat() {
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-        <span ref={scrollDownRef}> </span>
+        <nav ref={scrollDownRef}> </nav>
       </main>
 
-      <form onSubmit={sendMessage}>
+      <form className="footerContainer" onSubmit={sendMessage}>
         <input
           value={formValue}
           onChange={(e) => {
             setFormValue(e.target.value);
           }}
         />
-        <button type="submit">Send 💬</button>
+        <button className="sendButton" type="submit">
+          Send&nbsp;💬
+        </button>
       </form>
     </>
   );
@@ -131,7 +133,7 @@ function ChatMessage(props) {
 
   return (
     <div className={`message ${messageClass}`}>
-      <img src={photoURL} alt={uid} />
+      <img className="avatarPic" src={photoURL} alt={uid} />
       <p>{text}</p>
     </div>
   );

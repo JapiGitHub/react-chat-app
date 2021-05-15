@@ -5,27 +5,33 @@ body {
 
 .App {
   text-align: center;
-  max-width: 728px;
+  /* max-width: 728px; */
   margin: 0 auto;
+}
+
+.loginButtContainer {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 300px;
 }
 
 .googleSignButt {
   background-color: rgba(255, 255, 255, 0.15);
   padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
   font-family: "Roboto", sans-serif;
   font-size: 2.5rem;
   transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
   color: Black;
-  transform: scale(1);
 }
-
 .googleSignButt:hover {
-  transform: scale(1.1) perspective(1px);
-
+  transform: scale(1.3);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.35);
   background-color: rgba(255, 255, 255, 0.4);
   color: White;
+  width: 300%;
 }
 
 .App section {
@@ -37,7 +43,7 @@ body {
   font-size: 1.2rem;
 }
 
-main {
+.chat {
   padding: 10px;
   height: 85vh;
   margin-bottom: 10vh;
@@ -58,37 +64,36 @@ main::-webkit-scrollbar-thumb {
   background: linear-gradient(305deg, rgb(156, 9, 9), rgb(34, 82, 116));
 }
 
-form {
+.footerContainer {
   height: 10vh;
   position: fixed;
   bottom: 0;
-  background-color: rgb(24, 23, 23);
+  background-color: rgb(34, 82, 116);
   width: 100%;
-  max-width: 728px;
+  /* max-width: 728px; */
   display: flex;
   font-size: 1.5rem;
 }
 
-form button {
+.sendButton {
+  font-size: 2.5rem;
   width: 30%;
   background-color: rgb(163, 50, 50);
   font-family: "Lobster", cursive;
-  transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
-  transform: scale(1);
+  transition: all 0.2s cubic-bezier(0, 0.47, 0.4, 1.6);
   color: Black;
 }
 
-form button:hover {
+.sendButton:hover {
   color: White;
-  border-radius: 3px;
-  transform: scale(1.1) perspective(1px);
+  font-size: 3rem;
 }
 
 input {
   line-height: 1.5;
   width: 100%;
   font-size: 1.5rem;
-  background: rgba(50, 169, 255, 0.4);
+  background: rgb(34, 82, 116);
   color: rgb(255, 255, 255);
   outline: none;
   border: none;
@@ -157,9 +162,90 @@ p {
   color: black;
 }
 
-img {
+.avatarPic {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin: 2px 5px;
+  transition: all 0.3s cubic-bezier(0.42, 0, 0.4, 1.6);
+}
+
+.avatarPic:hover {
+  width: 70px;
+  height: 70px;
+  border-radius: 10%;
+  margin: 0px 0px;
+}
+
+/* ikkunan leveyden mukaan skaalautuva 3-vaiheinen (500 & 720 & 4k) fonttikoko */
+@media all and (max-width: 2160px) {
+  .sendButton {
+    font-size: 3rem;
+    transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
+  }
+
+  .sendButton:hover {
+    font-size: 4rem;
+  }
+
+  .footerContainer {
+    height: 15vh;
+  }
+
+  .chat {
+    height: 78vh;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .sendButton {
+    font-size: 2.2rem;
+    transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
+  }
+
+  .sendButton:hover {
+    font-size: 3rem;
+  }
+
+  .footerContainer {
+    height: 12vh;
+  }
+
+  .chat {
+    height: 83vh;
+  }
+}
+
+@media all and (max-width: 720px) {
+  .sendButton {
+    font-size: 1.5rem;
+    transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
+  }
+
+  .sendButton:hover {
+    font-size: 2rem;
+  }
+
+  .footerContainer {
+    height: 10vh;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .sendButton {
+    font-size: 0.9rem;
+    transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
+  }
+
+  .sendButton:hover {
+    font-size: 1.15rem;
+  }
+
+  .footerContainer {
+    height: 8vh;
+  }
+
+  .chat {
+    height: 87vh;
+  }
 }
