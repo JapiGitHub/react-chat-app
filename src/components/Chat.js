@@ -40,6 +40,12 @@ export default function Chat({ auth, firestore }) {
     setFormValue("");
   };
 
+  const pressEnterHandler = (e) => {
+    if (e.key == "Enter") {
+      sendMessage(e);
+    }
+  };
+
   //scrollaa viestit alas kirjautumisen jälkeen JA aina kun uusi viesti tulee.
   useEffect(() => {
     scrollDownRef.current.scrollIntoView({
@@ -50,7 +56,7 @@ export default function Chat({ auth, firestore }) {
   return (
     <>
       <NavItem
-        icon="🧠"
+        icon="😀"
         dropMenuOpen={dropMenuOpen}
         setDropMenuOpen={setDropMenuOpen}
       >
@@ -60,7 +66,7 @@ export default function Chat({ auth, firestore }) {
           auth={auth}
         />
       </NavItem>
-      <main className="chat" onClick={() => setDropMenuOpen(!dropMenuOpen)}>
+      <main className="chat" onClick={() => setDropMenuOpen(false)}>
         {messages &&
           messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} auth={auth} />
@@ -70,11 +76,16 @@ export default function Chat({ auth, firestore }) {
       </main>
 
       <form className="footerContainer" onSubmit={sendMessage}>
-        <input
+        <textarea
+          className="textarea-message-input"
+          rows="4"
+          autoFocus
+          maxLength="1024"
           value={formValue}
           onChange={(e) => {
             setFormValue(e.target.value);
           }}
+          onKeyPress={(e) => pressEnterHandler(e)}
         />
         <button className="sendButton" type="submit">
           Send&nbsp;💬

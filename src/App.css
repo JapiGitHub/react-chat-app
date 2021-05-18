@@ -5,7 +5,6 @@ body {
 
 .App {
   text-align: center;
-  /* max-width: 728px; */
   margin: 0 auto;
 }
 
@@ -45,7 +44,7 @@ body {
 
 .chat {
   padding: 10px;
-  height: 83vh;
+  height: 78vh;
   margin-bottom: 12vh;
   overflow-y: scroll;
   display: flex;
@@ -65,7 +64,7 @@ main::-webkit-scrollbar-thumb {
 }
 
 .footerContainer {
-  height: 10vh;
+  height: 15vh;
   position: fixed;
   bottom: 0;
   background-color: rgb(34, 82, 116);
@@ -89,10 +88,11 @@ main::-webkit-scrollbar-thumb {
   font-size: 3rem;
 }
 
-input {
+.textarea-message-input {
+  resize: none;
   line-height: 1.5;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 2rem;
   background: rgb(34, 82, 116);
   color: rgb(255, 255, 255);
   outline: none;
@@ -174,11 +174,12 @@ p {
   width: 70px;
   height: 70px;
   border-radius: 10%;
-  margin: 0px 0px;
+  margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 /* ikkunan leveyden mukaan skaalautuva 4-vaiheinen (500 & 720 & 1200 & 4k) fonttikoko */
-@media all and (max-width: 2160px) {
+/* @media all and (max-width: 2160px) {
   .sendButton {
     font-size: 3rem;
     transition: all 0.2s cubic-bezier(0.42, 0, 0.4, 1.6);
@@ -212,7 +213,7 @@ p {
   }
 
   .chat {
-    height: 83vh;
+    height: 81vh;
   }
 }
 
@@ -228,6 +229,10 @@ p {
 
   .footerContainer {
     height: 10vh;
+  }
+
+  .chat {
+    height: 83vh;
   }
 }
 
@@ -246,6 +251,6 @@ p {
   }
 
   .chat {
-    height: 87vh;
+    height: 90vh;
   }
-}
+} */
