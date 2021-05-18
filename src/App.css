@@ -45,8 +45,8 @@ body {
 
 .chat {
   padding: 10px;
-  height: 85vh;
-  margin-bottom: 10vh;
+  height: 83vh;
+  margin-bottom: 12vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

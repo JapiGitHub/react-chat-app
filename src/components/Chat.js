@@ -3,7 +3,11 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import "./menu.css";
+
 import ChatMessage from "./ChatMessage";
+import NavItem from "./NavItem";
+import DropDownMenu from "./DropDownMenu";
 
 export default function Chat({ auth, firestore }) {
   //reference a firestore collection
@@ -18,6 +22,8 @@ export default function Chat({ auth, firestore }) {
   const [formValue, setFormValue] = useState("");
 
   const scrollDownRef = useRef();
+
+  const [dropMenuOpen, setDropMenuOpen] = useState(false);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -34,7 +40,7 @@ export default function Chat({ auth, firestore }) {
     setFormValue("");
   };
 
-  //scrollaa alas kirjautumisen jälkeen ja aina kun uusi viesti tulee.
+  //scrollaa viestit alas kirjautumisen jälkeen JA aina kun uusi viesti tulee.
   useEffect(() => {
     scrollDownRef.current.scrollIntoView({
       behavior: "smooth",
@@ -43,7 +49,18 @@ export default function Chat({ auth, firestore }) {
 
   return (
     <>
-      <main className="chat">
+      <NavItem
+        icon="🧠"
+        dropMenuOpen={dropMenuOpen}
+        setDropMenuOpen={setDropMenuOpen}
+      >
+        <DropDownMenu
+          setFormValue={setFormValue}
+          formValue={formValue}
+          auth={auth}
+        />
+      </NavItem>
+      <main className="chat" onClick={() => setDropMenuOpen(!dropMenuOpen)}>
         {messages &&
           messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} auth={auth} />
