@@ -15,7 +15,7 @@ export default function Chat({ auth, firestore }) {
 
   const query = messagesRef.orderBy("createdAt");
 
-  //hookki jotta react päivittelee messagessin muuttuessa
+  //firebasen hookki jotta react päivittelee messagessin muuttuessa
   //idField: (optional) name of the field that should be populated with the firebase.firestore.QuerySnapshot.id property
   const [messages] = useCollectionData(query, { idField: "id" });
 
